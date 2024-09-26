@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PruebaApi.BLL\PruebaAPI.BLL.csproj" />
+    <ProjectReference Include="..\PruebaAPI.DAL\PruebaAPI.DAL.csproj" />
+    <ProjectReference Include="..\PruebaAPI.DTO\PruebaAPI.DTO.csproj" />
+    <ProjectReference Include="..\PruebaAPI.MODEL\PruebaAPI.MODEL.csproj" />
+    <ProjectReference Include="..\PruebaTecnicaAPI\PruebaAPI.csproj" />
+  </ItemGroup>
+
+</Project>
