@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PruebaAPI.BLL.Contract;
+using PruebaAPI.BLL.Service;
 using PruebaAPI.DAL.Contract;
 using PruebaAPI.DAL.DBContext;
 using PruebaAPI.DAL.Repository;
@@ -17,6 +19,11 @@ namespace PruebaAPI.IOC
             });
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddAutoMapper(typeof(MapperProfile));
+
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IRolService, RolService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IUserService, UserService>();
 
         }
     }
