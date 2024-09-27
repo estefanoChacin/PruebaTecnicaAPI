@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PruebaAPI.DAL.Contract;
 using PruebaAPI.DAL.DBContext;
 using PruebaAPI.DAL.Repository;
+using PruebaAPI.UTILITY.Mapper;
 
 namespace PruebaAPI.IOC
 {
@@ -15,6 +16,7 @@ namespace PruebaAPI.IOC
                 options.UseMySql(configuration.GetConnectionString("connection"), new MySqlServerVersion(new Version(8, 0, 25)));
             });
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddAutoMapper(typeof(MapperProfile));
 
         }
     }

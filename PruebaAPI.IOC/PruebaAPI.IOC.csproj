@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PruebaApi.BLL\PruebaAPI.BLL.csproj" />
     <ProjectReference Include="..\PruebaAPI.DAL\PruebaAPI.DAL.csproj" />
+    <ProjectReference Include="..\PruebaAPI.UTILITY\PruebaAPI.UTILITY.csproj" />
   </ItemGroup>
 
 </Project>
