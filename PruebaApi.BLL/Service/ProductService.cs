@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using PruebaAPI.BLL.Contract;
 using PruebaAPI.DAL.Contract;
 using PruebaAPI.DTO;
@@ -10,12 +11,15 @@ namespace PruebaAPI.BLL.Service
     public class ProductService : IProductService
     {
         private readonly IGenericRepository<Product> _ProductRepository;
+        private readonly IGenericRepository<Category> _categoryRepository;
+
         private readonly IMapper _mapper;
 
-        public ProductService(IGenericRepository<Product> ProductRepository, IMapper mapper)
+        public ProductService(IGenericRepository<Product> ProductRepository, IMapper mapper, IGenericRepository<Category> categoryRepository)
         {
             _ProductRepository = ProductRepository;
             _mapper = mapper;
+            _categoryRepository = categoryRepository;  
         }
 
         public async Task<List<ProductDTO>> GeAll()
@@ -35,9 +39,9 @@ namespace PruebaAPI.BLL.Service
         {
             try
             {
-                Product ProductFilter = await _ProductRepository.Get(e => e.idProduct == id);
+                Product ProductFilter = await _ProductRepository.Get(e => e.IdProduct == id);
 
-                if (ProductFilter == null || ProductFilter.idProduct == 0)
+                if (ProductFilter == null || ProductFilter.IdProduct == 0)
                     throw new TaskCanceledException("La producto no existe");
 
                 return _mapper.Map<ProductDTO>(ProductFilter);
@@ -52,14 +56,22 @@ namespace PruebaAPI.BLL.Service
         {
             try
             {
-                Product ProductCreated = await _ProductRepository.Create(_mapper.Map<Product>(Product));
+                //--validar que exista la catergoria en caso de no existir retornar
+                Category categoryFiltered = await _categoryRepository.Get(e => e.IdCategoria == Product.IdCategoria);
+                if (categoryFiltered == null)
+                    throw new TaskCanceledException("El id de la categoria no existe.");
 
-                if (ProductCreated == null || ProductCreated.idProduct == 0)
+                Product productAdd = _mapper.Map<Product>(Product);
+                productAdd.Categoria = categoryFiltered;
+
+                //--crear el producto y validar que realmente se haya creado en caso de no crearse se retorna.
+                Product ProductCreated = await _ProductRepository.Create(productAdd);
+                if (ProductCreated == null || ProductCreated.IdProduct == 0)
                     throw new TaskCanceledException("Errror. No se pudo crear la producto");
 
                 return _mapper.Map<ProductDTO>(ProductCreated);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }
@@ -69,9 +81,9 @@ namespace PruebaAPI.BLL.Service
         {
             try
             {
-                Product ProductFiltered = await _ProductRepository.Get(e => e.idProduct == Product.idProduct);
+                Product ProductFiltered = await _ProductRepository.Get(e => e.IdProduct == Product.idProduct);
 
-                if (ProductFiltered == null || ProductFiltered.idProduct == 0)
+                if (ProductFiltered == null || ProductFiltered.IdProduct == 0)
                     throw new TaskCanceledException("La producto no existe");
 
                 ProductFiltered.Name = Product.Name;
@@ -91,9 +103,9 @@ namespace PruebaAPI.BLL.Service
         {
             try
             {
-                Product ProductFiltered = await _ProductRepository.Get(e => e.idProduct == id);
+                Product ProductFiltered = await _ProductRepository.Get(e => e.IdProduct == id);
 
-                if (ProductFiltered == null || ProductFiltered.idProduct == 0)
+                if (ProductFiltered == null || ProductFiltered.IdProduct == 0)
                     throw new TaskCanceledException("La producto no existe.");
 
                 bool response = await _ProductRepository.Delete(ProductFiltered);

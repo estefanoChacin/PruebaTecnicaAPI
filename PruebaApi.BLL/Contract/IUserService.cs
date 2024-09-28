@@ -9,5 +9,6 @@ namespace PruebaAPI.BLL.Contract
         Task<UserDTO> Create(UserDTO user);
         Task<bool> Update(UserDTO user);
         Task<bool> Delete(int id);
+        Task<string> AuthenticateUser(LoginDTO login);
     }
 }

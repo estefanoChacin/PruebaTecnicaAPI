@@ -37,7 +37,7 @@ namespace PruebaAPI.BLL.Service
             {
                 Category categoryFilter = await _categoryRepository.Get(e => e.IdCategoria == id);
 
-                if (categoryFilter == null || categoryFilter.IdCategoria == 0)
+                if (categoryFilter == null )
                     throw new TaskCanceledException("La cateogria no existe");
 
                 return _mapper.Map<CategoryDTO>(categoryFilter);
@@ -54,7 +54,7 @@ namespace PruebaAPI.BLL.Service
             {
                 Category categoryCreated = await _categoryRepository.Create(_mapper.Map<Category>(category));
 
-                if (categoryCreated == null || categoryCreated.IdCategoria == 0)
+                if (categoryCreated == null)
                     throw new TaskCanceledException("Errror. No se pudo crear la categoria");
 
                 return _mapper.Map<CategoryDTO>(categoryCreated);
@@ -71,7 +71,7 @@ namespace PruebaAPI.BLL.Service
             {
                 Category categoryFiltered = await _categoryRepository.Get(e => e.IdCategoria == category.IdCategoria);
 
-                if (categoryFiltered == null || categoryFiltered.IdCategoria == 0)
+                if (categoryFiltered == null )
                     throw new TaskCanceledException("La categoria no existe");
 
                 categoryFiltered.Name = category.Name;
@@ -93,7 +93,7 @@ namespace PruebaAPI.BLL.Service
             {
                 Category categoryFiltered = await _categoryRepository.Get(e => e.IdCategoria == id);
 
-                if (categoryFiltered == null || categoryFiltered.IdCategoria == 0)
+                if (categoryFiltered == null )
                     throw new TaskCanceledException("La categoria no existe.");
 
                 bool response = await _categoryRepository.Delete(categoryFiltered);

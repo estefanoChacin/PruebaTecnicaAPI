@@ -17,9 +17,7 @@ namespace PruebaAPI.UTILITY.Mapper
                 .ForMember(destino => destino.Price,
                 opt => opt.MapFrom(origen => Convert.ToString(origen.Price, new CultureInfo("es-CO"))));
 
-            CreateMap<ProductDTO, Product>()
-                .ForMember(destino => destino.Price,
-                opt => opt.MapFrom(origen => Convert.ToDecimal(origen.Price)));
+            CreateMap<ProductDTO, Product>().ReverseMap();
 
             CreateMap<User, UserDTO>().ReverseMap();
         }
