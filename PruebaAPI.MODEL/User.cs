@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PruebaAPI.MODEL
 {
@@ -14,8 +15,12 @@ namespace PruebaAPI.MODEL
         public string Email { get; set; }
         [MaxLength(500)]
         public string Password { get; set; }
-        public DateTime createdDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         [DefaultValue(true)]
-        public bool isActive { get; set; }
+        public byte IsActive { get; set; }
+        public int IdRol { get; set; }
+
+        [ForeignKey("IdRol")]
+        public Rol Rol { get; set; }
     }
 }
