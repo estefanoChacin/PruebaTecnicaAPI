@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PruebaAPI.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class initialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -38,7 +38,8 @@ namespace PruebaAPI.DAL.Migrations
                 {
                     IdRol = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<int>(type: "int", maxLength: 50, nullable: false),
+                    name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     datedCreate = table.Column<DateTime>(type: "datetime(6)", maxLength: 200, nullable: false)
                 },
                 constraints: table =>
@@ -51,25 +52,27 @@ namespace PruebaAPI.DAL.Migrations
                 name: "Product",
                 columns: table => new
                 {
-                    idProduct = table.Column<int>(type: "int", nullable: false)
+                    IdProduct = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Stock = table.Column<int>(type: "int", nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(15,2)", nullable: true),
                     DatedCreate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    CategoriaIdCategoria = table.Column<int>(type: "int", nullable: true)
+                    IdCategoria = table.Column<int>(type: "int", nullable: false),
+                    CategoriaIdCategoria = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.idProduct);
+                    table.PrimaryKey("PK_Product", x => x.IdProduct);
                     table.ForeignKey(
                         name: "FK_Product_Category_CategoriaIdCategoria",
                         column: x => x.CategoriaIdCategoria,
                         principalTable: "Category",
-                        principalColumn: "IdCategoria");
+                        principalColumn: "IdCategoria",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -85,18 +88,19 @@ namespace PruebaAPI.DAL.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Password = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    createdDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    isActive = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    RolIdRol = table.Column<int>(type: "int", nullable: true)
+                    CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    IsActive = table.Column<byte>(type: "tinyint unsigned", nullable: false),
+                    IdRol = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.IdUser);
                     table.ForeignKey(
-                        name: "FK_User_Rol_RolIdRol",
-                        column: x => x.RolIdRol,
+                        name: "FK_User_Rol_IdRol",
+                        column: x => x.IdRol,
                         principalTable: "Rol",
-                        principalColumn: "IdRol");
+                        principalColumn: "IdRol",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -106,9 +110,9 @@ namespace PruebaAPI.DAL.Migrations
                 column: "CategoriaIdCategoria");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_RolIdRol",
+                name: "IX_User_IdRol",
                 table: "User",
-                column: "RolIdRol");
+                column: "IdRol");
         }
 
         /// <inheritdoc />

@@ -12,8 +12,8 @@ using PruebaAPI.DAL.DBContext;
 namespace PruebaAPI.DAL.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20240927134452_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240927220335_initialMigration")]
+    partial class initialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,13 +48,13 @@ namespace PruebaAPI.DAL.Migrations
 
             modelBuilder.Entity("PruebaAPI.MODEL.Product", b =>
                 {
-                    b.Property<int>("idProduct")
+                    b.Property<int>("IdProduct")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("idProduct"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdProduct"));
 
-                    b.Property<int?>("CategoriaIdCategoria")
+                    b.Property<int>("CategoriaIdCategoria")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DatedCreate")
@@ -63,6 +63,9 @@ namespace PruebaAPI.DAL.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
+
+                    b.Property<int>("IdCategoria")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasMaxLength(50)
@@ -74,7 +77,7 @@ namespace PruebaAPI.DAL.Migrations
                     b.Property<int?>("Stock")
                         .HasColumnType("int");
 
-                    b.HasKey("idProduct");
+                    b.HasKey("IdProduct");
 
                     b.HasIndex("CategoriaIdCategoria");
 
@@ -93,9 +96,10 @@ namespace PruebaAPI.DAL.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("name")
+                    b.Property<string>("name")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("IdRol");
 
@@ -110,10 +114,19 @@ namespace PruebaAPI.DAL.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdUser"));
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
+
+                    b.Property<int>("IdRol")
+                        .HasColumnType("int");
+
+                    b.Property<byte>("IsActive")
+                        .HasColumnType("tinyint unsigned");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -125,18 +138,9 @@ namespace PruebaAPI.DAL.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
-                    b.Property<int?>("RolIdRol")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("tinyint(1)");
-
                     b.HasKey("IdUser");
 
-                    b.HasIndex("RolIdRol");
+                    b.HasIndex("IdRol");
 
                     b.ToTable("User");
                 });
@@ -145,16 +149,22 @@ namespace PruebaAPI.DAL.Migrations
                 {
                     b.HasOne("PruebaAPI.MODEL.Category", "Categoria")
                         .WithMany()
-                        .HasForeignKey("CategoriaIdCategoria");
+                        .HasForeignKey("CategoriaIdCategoria")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Categoria");
                 });
 
             modelBuilder.Entity("PruebaAPI.MODEL.User", b =>
                 {
-                    b.HasOne("PruebaAPI.MODEL.Rol", null)
+                    b.HasOne("PruebaAPI.MODEL.Rol", "Rol")
                         .WithMany("users")
-                        .HasForeignKey("RolIdRol");
+                        .HasForeignKey("IdRol")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rol");
                 });
 
             modelBuilder.Entity("PruebaAPI.MODEL.Rol", b =>
