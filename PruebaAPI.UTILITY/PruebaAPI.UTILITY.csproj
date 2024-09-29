@@ -7,10 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PruebaAPI.DAL\PruebaAPI.DAL.csproj" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PruebaAPI.DTO\PruebaAPI.DTO.csproj" />
     <ProjectReference Include="..\PruebaAPI.MODEL\PruebaAPI.MODEL.csproj" />
-    <ProjectReference Include="..\PruebaAPI.UTILITY\PruebaAPI.UTILITY.csproj" />
   </ItemGroup>
 
 </Project>
