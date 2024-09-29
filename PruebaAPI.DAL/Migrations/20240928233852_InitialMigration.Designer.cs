@@ -12,8 +12,8 @@ using PruebaAPI.DAL.DBContext;
 namespace PruebaAPI.DAL.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20240927220335_initialMigration")]
-    partial class initialMigration
+    [Migration("20240928233852_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,18 @@ namespace PruebaAPI.DAL.Migrations
                     b.HasKey("IdCategoria");
 
                     b.ToTable("Category");
+
+                    b.HasData(
+                        new
+                        {
+                            IdCategoria = 1,
+                            Name = "Autos"
+                        },
+                        new
+                        {
+                            IdCategoria = 2,
+                            Name = "Motocicletas"
+                        });
                 });
 
             modelBuilder.Entity("PruebaAPI.MODEL.Product", b =>
@@ -54,7 +66,7 @@ namespace PruebaAPI.DAL.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdProduct"));
 
-                    b.Property<int>("CategoriaIdCategoria")
+                    b.Property<int?>("CategoriaIdCategoria")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DatedCreate")
@@ -71,7 +83,7 @@ namespace PruebaAPI.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<int?>("Stock")
@@ -82,6 +94,28 @@ namespace PruebaAPI.DAL.Migrations
                     b.HasIndex("CategoriaIdCategoria");
 
                     b.ToTable("Product");
+
+                    b.HasData(
+                        new
+                        {
+                            IdProduct = 1,
+                            DatedCreate = new DateTime(2024, 9, 28, 18, 38, 51, 790, DateTimeKind.Local).AddTicks(3239),
+                            Description = "De la linea deportiva",
+                            IdCategoria = 2,
+                            Name = "MT-15",
+                            Price = 16000000m,
+                            Stock = 2
+                        },
+                        new
+                        {
+                            IdProduct = 2,
+                            DatedCreate = new DateTime(2024, 9, 28, 18, 38, 51, 790, DateTimeKind.Local).AddTicks(3245),
+                            Description = "un auto de excelente gama",
+                            IdCategoria = 1,
+                            Name = "Mazda 3",
+                            Price = 25000000m,
+                            Stock = 2
+                        });
                 });
 
             modelBuilder.Entity("PruebaAPI.MODEL.Rol", b =>
@@ -104,6 +138,20 @@ namespace PruebaAPI.DAL.Migrations
                     b.HasKey("IdRol");
 
                     b.ToTable("Rol");
+
+                    b.HasData(
+                        new
+                        {
+                            IdRol = 1,
+                            datedCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            name = "ADMIN"
+                        },
+                        new
+                        {
+                            IdRol = 2,
+                            datedCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            name = "EMPLEADO"
+                        });
                 });
 
             modelBuilder.Entity("PruebaAPI.MODEL.User", b =>
@@ -143,15 +191,35 @@ namespace PruebaAPI.DAL.Migrations
                     b.HasIndex("IdRol");
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            IdUser = 1,
+                            CreatedDate = new DateTime(2024, 9, 28, 18, 38, 51, 790, DateTimeKind.Local).AddTicks(3191),
+                            Email = "alejrando@gmail.com",
+                            IdRol = 1,
+                            IsActive = (byte)1,
+                            Name = "alejandro",
+                            Password = "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5"
+                        },
+                        new
+                        {
+                            IdUser = 2,
+                            CreatedDate = new DateTime(2024, 9, 28, 18, 38, 51, 790, DateTimeKind.Local).AddTicks(3205),
+                            Email = "miguel@gmail.com",
+                            IdRol = 2,
+                            IsActive = (byte)1,
+                            Name = "miguel",
+                            Password = "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5"
+                        });
                 });
 
             modelBuilder.Entity("PruebaAPI.MODEL.Product", b =>
                 {
                     b.HasOne("PruebaAPI.MODEL.Category", "Categoria")
                         .WithMany()
-                        .HasForeignKey("CategoriaIdCategoria")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoriaIdCategoria");
 
                     b.Navigation("Categoria");
                 });

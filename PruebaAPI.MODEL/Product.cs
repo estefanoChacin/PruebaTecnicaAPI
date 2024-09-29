@@ -18,6 +18,6 @@ namespace PruebaAPI.MODEL
         public DateTime  DatedCreate { get; set; }
         [ForeignKey("IdCategoria")]
         public int IdCategoria  { get; set; }
-        public virtual Category Categoria { get; set; }
+        public virtual Category? Categoria { get; set; }
     }
 }

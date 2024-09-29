@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PruebaAPI.BLL.Contract;
 using PruebaAPI.DTO;
 
 namespace PruebaAPI.Controllers
 {
+    [Authorize(Roles = "ADMIN,EMPLEADO")]
     [Route("api/product")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -83,7 +85,8 @@ namespace PruebaAPI.Controllers
             var response = new ResponseHTTP<ProductDTO>();
             try
             {
-                response.status = await _productService.Update(product);
+                response.status= true;
+                response.Content = await _productService.Update(product);
                 return Ok(response);
 
             }

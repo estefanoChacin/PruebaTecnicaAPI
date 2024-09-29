@@ -64,6 +64,8 @@ namespace PruebaAPI.BLL.Service
                 Product productAdd = _mapper.Map<Product>(Product);
                 productAdd.Categoria = categoryFiltered;
 
+                productAdd.IdProduct = 0;
+
                 //--crear el producto y validar que realmente se haya creado en caso de no crearse se retorna.
                 Product ProductCreated = await _ProductRepository.Create(productAdd);
                 if (ProductCreated == null || ProductCreated.IdProduct == 0)
@@ -77,21 +79,28 @@ namespace PruebaAPI.BLL.Service
             }
         }
 
-        public async Task<bool> Update(ProductDTO Product)
+        public async Task<ProductDTO> Update(ProductDTO Product)
         {
             try
             {
+                //--Validar que exista el porducto en caso de no existir retornar
                 Product ProductFiltered = await _ProductRepository.Get(e => e.IdProduct == Product.idProduct);
-
                 if (ProductFiltered == null || ProductFiltered.IdProduct == 0)
                     throw new TaskCanceledException("La producto no existe");
 
+                //--validar que exista la catergoria en caso de no existir retornar
+                Category categoryFiltered = await _categoryRepository.Get(e => e.IdCategoria == Product.IdCategoria);
+                if (categoryFiltered == null)
+                    throw new TaskCanceledException("El id de la categoria no existe.");
+
+                //--Setear datos del producto con los nuevos valores
                 ProductFiltered.Name = Product.Name;
                 ProductFiltered.Description = Product.Description;
+                ProductFiltered.Stock = Product.Stock;
+                ProductFiltered.Price = Product.Price;
 
-                bool response = await _ProductRepository.Update(ProductFiltered);
-
-                return response;
+                Product productUpdated = await _ProductRepository.Update(ProductFiltered);
+                return _mapper.Map<ProductDTO>(productUpdated);
             }
             catch (Exception)
             {

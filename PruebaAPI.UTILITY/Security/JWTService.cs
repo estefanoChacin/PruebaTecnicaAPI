@@ -35,8 +35,8 @@ namespace PruebaAPI.UTILITY.Security
             var claims = new[]
             {
             new Claim("IdUser", user.IdUser.ToString()),
-            new Claim("Name", user.Name),
-            new Claim("Rol", user.Rol.name)
+            new Claim("name", user.Name),
+            new Claim("role", user.Rol.name)
            };
 
             var token = new JwtSecurityToken(

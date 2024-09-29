@@ -8,7 +8,7 @@ namespace PruebaAPI.DAL.Contract
         Task<IQueryable<T>> Getall(Expression<Func<T, bool>> filter = null);
         Task<T> Get(Expression<Func<T, bool>> filter);
         Task<T> Create(T model);
-        Task<bool> Update(T model);
+        Task<T> Update(T model);
         Task<bool> Delete(T model);
     }
 }

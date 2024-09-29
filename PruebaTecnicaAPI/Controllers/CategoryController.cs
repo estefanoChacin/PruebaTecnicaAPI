@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PruebaAPI.BLL.Contract;
 using PruebaAPI.DTO;
 
 namespace PruebaAPI.Controllers
 {
+    [Authorize(Roles = "ADMIN,EMPLEADO")]
     [Route("api/category")]
     [ApiController]
     public class CategoryController : ControllerBase
@@ -79,7 +81,8 @@ namespace PruebaAPI.Controllers
             var response = new ResponseHTTP<CategoryDTO>();
             try
             {
-                response.status = await _categoryService.Update(category);
+                response.status = true;
+                response.Content = await _categoryService.Update(category);
                 return Ok(response);
 
             }

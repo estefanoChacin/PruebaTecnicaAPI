@@ -7,7 +7,7 @@ namespace PruebaAPI.BLL.Contract
         Task<ProductDTO> Get(int id);
         Task<List<ProductDTO>> GeAll();
         Task<ProductDTO> Create(ProductDTO product);
-        Task<bool> Update(ProductDTO product);
+        Task<ProductDTO> Update(ProductDTO product);
         Task<bool> Delete(int id);
     }
 }

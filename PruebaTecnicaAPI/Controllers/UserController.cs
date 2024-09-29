@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
-using Mysqlx;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PruebaAPI.BLL.Contract;
 using PruebaAPI.DTO;
 
 namespace PruebaAPI.Controllers
 {
+    [Authorize(Roles = "ADMIN")]
     [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase
@@ -84,7 +84,8 @@ namespace PruebaAPI.Controllers
             var response = new ResponseHTTP<UserDTO>();
             try
             {
-                response.status = await _userService.Update(user);
+                response.status =true;
+                response.Content = await _userService.Update(user);
                 return Ok(response);
 
             }

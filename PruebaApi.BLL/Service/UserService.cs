@@ -47,7 +47,7 @@ namespace PruebaAPI.BLL.Service
             {
                 User userFiltered = await _userRepository.Get(e => e.IdUser == id);
 
-                if (userFiltered == null || userFiltered.IdUser == 0)
+                if (userFiltered == null)
                     throw new TaskCanceledException("El usuario no existe");
 
                 return _mapper.Map<UserDTO>(userFiltered);
@@ -81,7 +81,9 @@ namespace PruebaAPI.BLL.Service
                 usuario.Password = newPassword;
                 //-----establecer fecha de creacion
                 usuario.CreatedDate = DateTime.Now;
-               
+
+                usuario.IdUser = 0;
+            
                 //-----crear usuario y validar si de verdad a sido creado y retornar
                 User usuarioCreated = await _userRepository.Create(usuario);
                 if (usuarioCreated == null || usuarioCreated.IdUser == 0)
@@ -97,7 +99,7 @@ namespace PruebaAPI.BLL.Service
 
 
         //acatulizar el usuario
-        public async Task<bool> Update(UserDTO usuario)
+        public async Task<UserDTO> Update(UserDTO usuario)
         {
             try
             {
@@ -124,12 +126,12 @@ namespace PruebaAPI.BLL.Service
                 }
 
                 //----validar el rol antes de actualzar el usuario en caso de no existir retornar
-                var rol = _rolRepository.Get(e => e.IdRol == usuario.IdRol);
-                if (rol.Id == 0 || rol == null)
+                var rol = await _rolRepository.Get(e => e.IdRol == usuario.IdRol);
+                if ( rol == null)
                     throw new TaskCanceledException("El id del rol no existe");
 
-                bool response = await _userRepository.Update(userFiltered);
-                return response;
+                User userUpdate = await _userRepository.Update(userFiltered);
+                return _mapper.Map<UserDTO>(userUpdate);
             }
             catch (Exception)
             {

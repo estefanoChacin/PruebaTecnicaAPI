@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PruebaAPI.BLL.Contract;
 using PruebaAPI.DTO;
 
 namespace PruebaAPI.Controllers
 {
+    [Authorize(Roles = "ADMIN")]
     [Route("api/rol")]
     [ApiController]
     public class RolController : ControllerBase
@@ -37,7 +39,7 @@ namespace PruebaAPI.Controllers
         }
 
 
-        [HttpGet("geRolId")]
+        [HttpGet("getRolId")]
         public async Task<IActionResult> GetById(int id)
         {
             var response = new ResponseHTTP<RolDTO>();
@@ -80,7 +82,8 @@ namespace PruebaAPI.Controllers
             var response = new ResponseHTTP<RolDTO>();
             try
             {
-                response.status = await _rolService.Update(rol);
+                response.status = true;
+                response.Content = await _rolService.Update(rol);
                 return Ok(response);
 
             }

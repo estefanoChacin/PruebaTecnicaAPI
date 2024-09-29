@@ -42,14 +42,14 @@ namespace PruebaAPI.DAL.Repository
             }
         }
 
-        public async Task<bool> Update(T model)
+        public async Task<T> Update(T model)
         {
             try
             {
                 _dbContext.Set<T>().Update(model);
                 await _dbContext.SaveChangesAsync();
 
-                return true;
+                return model;
             }
             catch (Exception)
             {

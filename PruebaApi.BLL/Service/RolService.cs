@@ -50,6 +50,7 @@ namespace PruebaAPI.BLL.Service
         {
             try
             {
+                rol.IdRol = 0;
                 Rol rolCreated = await _rolRepository.Create(_mapper.Map<Rol>(rol));
 
                 if (rolCreated == null || rolCreated.IdRol == 0)
@@ -63,7 +64,7 @@ namespace PruebaAPI.BLL.Service
             }
         }
 
-        public async Task<bool> Update(RolDTO rol)
+        public async Task<RolDTO> Update(RolDTO rol)
         {
             try
             {
@@ -74,9 +75,9 @@ namespace PruebaAPI.BLL.Service
 
                 rolFiltered.name = rol.name;
 
-                bool response = await _rolRepository.Update(rolFiltered);
+                Rol rolUpdated = await _rolRepository.Update(rolFiltered);
                 
-                return response;
+                return _mapper.Map<RolDTO>(rolUpdated);
             }
             catch (Exception)
             {

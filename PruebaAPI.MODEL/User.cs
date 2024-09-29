@@ -21,6 +21,6 @@ namespace PruebaAPI.MODEL
         public int IdRol { get; set; }
 
         [ForeignKey("IdRol")]
-        public Rol Rol { get; set; }
+        public Rol? Rol { get; set; }
     }
 }

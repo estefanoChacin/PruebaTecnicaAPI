@@ -52,6 +52,8 @@ namespace PruebaAPI.BLL.Service
         {
             try
             {
+                category.IdCategoria = 0;
+
                 Category categoryCreated = await _categoryRepository.Create(_mapper.Map<Category>(category));
 
                 if (categoryCreated == null)
@@ -65,7 +67,7 @@ namespace PruebaAPI.BLL.Service
             }
         }
 
-        public async Task<bool> Update(CategoryDTO category)
+        public async Task<CategoryDTO> Update(CategoryDTO category)
         {
             try
             {
@@ -77,9 +79,9 @@ namespace PruebaAPI.BLL.Service
                 categoryFiltered.Name = category.Name;
                 categoryFiltered.Description = category.Description;
 
-                bool response = await _categoryRepository.Update(categoryFiltered);
+                Category categoryUpdated = await _categoryRepository.Update(categoryFiltered);
 
-                return response;
+                return _mapper.Map<CategoryDTO>(categoryUpdated);
             }
             catch (Exception)
             {
