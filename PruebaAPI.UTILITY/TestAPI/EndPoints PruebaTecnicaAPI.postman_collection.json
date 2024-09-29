@@ -1,0 +1,840 @@
+{
+	"info": {
+		"_postman_id": "d422a385-bf46-428d-a65d-c0e86b2b06b0",
+		"name": "EndPoints PruebaTecnicaAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30838391"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"item": [
+				{
+					"name": "getBearerToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"alejrando@gmail.com\",\r\n  \"password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7004/api/Authenticate/getBearerToken",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"Authenticate",
+								"getBearerToken"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "En el presente folder encontrara la solicitud y en el cuerpo de la misma un ejemplo del JSON a enviar para obtener el token y de esta forma autenticarse en la API."
+		},
+		{
+			"name": "Rols",
+			"item": [
+				{
+					"name": "getAllRols",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3MDk3NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.2n1W4_C5jd783ksNouqx6h9wprHPZWt3aQxLXiKmmbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7004/api/rol/getAllRols",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"rol",
+								"getAllRols"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRolId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3MDk3NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.2n1W4_C5jd783ksNouqx6h9wprHPZWt3aQxLXiKmmbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7004/api/rol/getRolId?id=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"rol",
+								"getRolId"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createRol",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3MDk3NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.2n1W4_C5jd783ksNouqx6h9wprHPZWt3aQxLXiKmmbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idRol\": 0,\r\n  \"name\": \"Rol de prueba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7004/api/rol/createRol",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"rol",
+								"createRol"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateRol",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3MDk3NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.2n1W4_C5jd783ksNouqx6h9wprHPZWt3aQxLXiKmmbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idRol\": 3,\r\n  \"name\": \"Rol de prueba copia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7004/api/rol/UpdateRol",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"rol",
+								"UpdateRol"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRol",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3MDk3NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.2n1W4_C5jd783ksNouqx6h9wprHPZWt3aQxLXiKmmbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7004/api/rol/deleteRol?id=5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"rol",
+								"deleteRol"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "En el presente folder encontrara todos las solicitudes hacia los endpoints para realizar el CRUD para la entidad de Rol.\n\nTambien en el cuerpo de cada Solicitud va un ejemplo con el JSON que debe de enviar.\n\nRecuerde estar autenticado con el rol \"ADMIN\" de no ser asi cada uno de los endpoints le retornara un \"UNAUTHORIZED\"."
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "getAllUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3MDk3NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.2n1W4_C5jd783ksNouqx6h9wprHPZWt3aQxLXiKmmbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7004/api/user/getAllUsers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"user",
+								"getAllUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "geUserId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3MDk3NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.2n1W4_C5jd783ksNouqx6h9wprHPZWt3aQxLXiKmmbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7004/api/user/geUserId?id=4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"user",
+								"geUserId"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3MDk3NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.2n1W4_C5jd783ksNouqx6h9wprHPZWt3aQxLXiKmmbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idUser\": 0,\r\n  \"name\": \"user de prueba\",\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"12345\",\r\n  \"idRol\": 2,\r\n  \"isActive\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7004/api/user/createUser",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"user",
+								"createUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3NTI5OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.BQoE3lIVGM4CHp0TZCztjAj_u3CXiupfIavSt5goWJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idUser\": 3,\r\n  \"name\": \"user de prueba 33333\",\r\n  \"email\": \"UserPrueba@gmail.com\",\r\n  \"password\": \"12345678\",\r\n  \"idRol\": 2,\r\n  \"isActive\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7004/api/user/UpdateUser",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"user",
+								"UpdateUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3NTI5OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.BQoE3lIVGM4CHp0TZCztjAj_u3CXiupfIavSt5goWJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7004/api/user/deleteUser?id=3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"user",
+								"deleteUser"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "En el presente folder encontrara todos las solicitudes hacia los endpoints para realizar el CRUD para la entidad de usuario.\n\nTambien en el cuerpo de cada Solicitud va un ejemplo con el JSON que debe de enviar.\n\nRecuerde estar autenticado con el rol \"ADMIN\" de no ser asi cada uno de los endpoints le retornara un \"UNAUTHORIZED\"."
+		},
+		{
+			"name": "Categorys",
+			"item": [
+				{
+					"name": "getAllCategories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3ODk2NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.SWHeKF1xlAeEklS-a9gZQe6T_cGKd-mygzcB-CU8CkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7004/api/category/getAllCategories",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"category",
+								"getAllCategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCategoryId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3NTI5OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.BQoE3lIVGM4CHp0TZCztjAj_u3CXiupfIavSt5goWJo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7004/api/category/getCategoryId?id=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"category",
+								"getCategoryId"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3ODk2NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.SWHeKF1xlAeEklS-a9gZQe6T_cGKd-mygzcB-CU8CkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idCategoria\": 0,\r\n  \"name\": \"categoria de prueba\",\r\n  \"description\": \"descripcion\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7004/api/category/createCategory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"category",
+								"createCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3ODk2NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.SWHeKF1xlAeEklS-a9gZQe6T_cGKd-mygzcB-CU8CkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idCategoria\": 9,\r\n  \"name\": \"categoria actualizada\",\r\n  \"description\": \"description actualizada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7004/api/category/updateCategory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"category",
+								"updateCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3ODk2NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.SWHeKF1xlAeEklS-a9gZQe6T_cGKd-mygzcB-CU8CkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7004/api/category/deleteCategory?id=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"category",
+								"deleteCategory"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "getAllProducts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3ODk2NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.SWHeKF1xlAeEklS-a9gZQe6T_cGKd-mygzcB-CU8CkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7004/api/product/getAllProducts",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"product",
+								"getAllProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3ODk2NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.SWHeKF1xlAeEklS-a9gZQe6T_cGKd-mygzcB-CU8CkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7004/api/product/getProductId?id=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"product",
+								"getProductId"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3ODk2NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.SWHeKF1xlAeEklS-a9gZQe6T_cGKd-mygzcB-CU8CkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idProduct\": 90,\r\n  \"name\": \"producto de prueba\",\r\n  \"description\": \"string\",\r\n  \"stock\": 0,\r\n  \"price\": 600000,\r\n  \"idCategoria\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7004/api/product/createProduct",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"product",
+								"createProduct"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3ODk2NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.SWHeKF1xlAeEklS-a9gZQe6T_cGKd-mygzcB-CU8CkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idProduct\": 81,\r\n  \"name\": \"producto de prueba update\",\r\n  \"description\": \"string\",\r\n  \"stock\": 56,\r\n  \"price\": 900000,\r\n  \"idCategoria\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7004/api/product/updateProduct",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"product",
+								"updateProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVzZXIiOiIxIiwibmFtZSI6ImFsZWphbmRybyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcyNzU3ODk2NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwNCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDQifQ.SWHeKF1xlAeEklS-a9gZQe6T_cGKd-mygzcB-CU8CkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7004/api/product/deleteProduct?id=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7004",
+							"path": [
+								"api",
+								"product",
+								"deleteProduct"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
