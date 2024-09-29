@@ -17,4 +17,8 @@
     <ProjectReference Include="..\PruebaAPI.MODEL\PruebaAPI.MODEL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TestAPI\" />
+  </ItemGroup>
+
 </Project>
