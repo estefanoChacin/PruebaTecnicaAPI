@@ -25,7 +25,7 @@ El proyecto contiene una migración pendiente. Al ejecutar la API, si la conexi�
 
 **Credenciales de los usuarios registrados:**
 1. **Email**: miguel@gmail.com, **Contraseña**: 12345, **Rol**: EMPLEADO.
-2. **Email**: alejandro@gmail.com, **Contraseña**: 12345, **Rol**: ADMIN.
+2. **Email**: alejrando@gmail.com, **Contraseña**: 12345, **Rol**: ADMIN.
 
 Una vez realizada esta configuración, no es necesario realizar ajustes adicionales en la base de datos.
 
